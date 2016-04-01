@@ -127,3 +127,64 @@ body {
 /**
  * App code
  */
+
+// --------------- Splash View --------------- //
+
+.splash {
+    margin: 0 auto;
+    text-align: center;
+
+    .signInContainer {
+        margin: 0 auto;
+        border: 1px solid black;
+        width: 300px;
+
+        input {
+            display: block;
+            margin: 10px auto;
+        }
+
+        button {
+            display: inline-block;
+            margin: 10px;
+        }
+    }
+}
+
+// --------------- Dash View --------------- //
+
+.dash {
+    margin: 0 auto;
+    text-align: center;
+
+    .dashOptions {
+        margin: 0 auto;
+
+        a {
+            margin: 20px;
+            display: inline-block;
+        }
+    }
+}
+
+// --------------- Add Post --------------- //
+
+.addpost {
+    margin: 0 auto;
+    text-align: center;
+
+    #title {
+        margin: 10px auto;
+        border: 1px solid black;
+        display: block;
+        width: 500px;
+    }
+
+    #content {
+        margin: 10px auto;
+        border: 1px solid black;
+        display: block;
+        width: 500px;
+        height: 700px;
+    }
+}

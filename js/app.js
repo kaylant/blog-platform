@@ -35,11 +35,119 @@ import fetch from "isomorphic-fetch"
 
 import DOM from 'react-dom'
 import React, {Component} from 'react'
+import Backbone from 'bbfire'
+import Firebase from 'firebase'
+
+import SplashView from './views/splashView'
+import DashView from './views/dashView'
+import AddPost from './views/addPost'
 
 function app() {
-    // start app
-    // new Router()
-    DOM.render(<p>test 2</p>, document.querySelector('.container'))
+
+	// --------------- Collection/Models --------------- //
+
+	var MyPostsCollection = Backbone.Firebase.Collection.extend ({
+		url: "https://blog-platform.firebaseio.com/users",
+
+		initialize: function(uid) {
+			this.url = `https://blog-platform.firebaseio.com/users${uid}/myposts`
+		}
+	})
+
+	// --------------- Router --------------- //
+	var BlogRouter = Backbone.Router.extend ({
+		routes: {
+			"splash"   : "toSplash",
+			"dash"     : "toDash",
+			"myposts"  : "toMyPosts",
+			"addpost"  : "toAddPost",
+			"allposts" : "toAllPosts"
+		},
+
+		initialize: function(){
+			this.ref = new Firebase("https://blog-platform.firebaseio.com/")
+			var auth = this.ref.getAuth()
+			if (!auth) location.hash = "splash" // if user is not registered, route them back to splash page
+
+			this.on("all", function() {
+				if (!this.ref.getAuth()) location.hash = "splash"
+			}, this)
+		},
+
+		toSplash: function(){
+			var boundSignUserIn = this._signUserIn.bind(this)
+			var boundSignUserUp = this._signUserUp.bind(this)
+			DOM.render(<SplashView error={null} boundSignUserIn={boundSignUserIn} boundSignUserUp={boundSignUserUp}/>, document.querySelector('.container'))
+			window.location.hash = "splash"
+		},
+
+		// code from Firebase
+		_signUserIn: function(submittedEmail, submittedPassword) {
+			var ref = this.ref
+			var handler = function(error, authData) {
+				if (error) {
+					console.log("Login Failed!", error)
+				} else {
+					console.log("Authenticated successfully")
+					console.log(authData)
+					location.hash = "dash"
+				}
+			}
+			ref.authWithPassword({
+				email    : submittedEmail,
+				password : submittedPassword
+			}, handler)  	
+		},
+
+		// code from Firebase
+		_signUserUp: function(submittedEmail, submittedPassword) {
+			var ref = this.ref
+			var boundSignUserIn = this._signUserIn.bind(this)
+			var boundSignUserUp = this._signUserUp.bind(this)
+			var storeUser = function(userData) {
+				ref.child('users').child(userData.uid).set({email:submittedEmail})
+			}
+			var handler = function(error, userData) {
+				if (error) {
+					console.log("Error creating user:", error)
+					DOM.render(<SplashView error={error} boundSignUserIn={boundSignUserIn} boundSignUserUp={boundSignUserUp} />, document.querySelector('.container'))
+				} else {
+					console.log("Successfully created user account with uid:", userData.uid)
+					storeUser(userData)
+					boundSignUserIn(submittedEmail, submittedPassword)
+				}
+			}
+			ref.createUser({
+				email    : submittedEmail,
+				password : submittedPassword				
+			}, handler)
+		},
+
+		toDash: function(){
+			DOM.render(<DashView email={this.ref.getAuth().password.email}/>, document.querySelector('.container'))
+			window.location.hash = "dash"
+		},
+
+		toMyPosts: function(){
+			DOM.render(<p>My Posts</p>, document.querySelector('.container'))
+			window.location.hash = "myposts"			
+		},
+
+		toAddPost: function(){
+			DOM.render(<AddPost/>, document.querySelector('.container'))
+			window.location.hash = "addpost"
+		},
+
+		toAllPosts: function(){ // posts by all users
+			DOM.render(<p>View All Posts</p>, document.querySelector('.container'))
+			window.location.hash = "allposts"
+		}
+	})
+
+	var rtr = new BlogRouter()
+
+	Backbone.history.start()
+
 }
 
 app()
