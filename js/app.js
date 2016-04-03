@@ -41,13 +41,21 @@ import Firebase from 'firebase'
 import SplashView from './views/splashView'
 import DashView from './views/dashView'
 import AddPost from './views/addPost'
+import MyPosts from './views/myPosts'
 
 function app() {
 
 	// --------------- Collection/Models --------------- //
+	var MyPostModel = Backbone.Model.extend ({
+		defaults: {
+			'title': "",
+			'content': ""
+		}
+	})
 
 	var MyPostsCollection = Backbone.Firebase.Collection.extend ({
 		url: "https://blog-platform.firebaseio.com/users",
+		model: MyPostModel,
 
 		initialize: function(uid) {
 			this.url = `https://blog-platform.firebaseio.com/users${uid}/myposts`
@@ -129,11 +137,13 @@ function app() {
 		},
 
 		toMyPosts: function(){
-			DOM.render(<p>My Posts</p>, document.querySelector('.container'))
+			var mc = new MyPostsCollection(this.ref.getAuth().uid)
+			DOM.render(<MyPosts email={this.ref.getAuth().password.email} myPostsColl={mc}/>, document.querySelector('.container'))
 			window.location.hash = "myposts"			
 		},
 
 		toAddPost: function(){
+			// pass collection down to add post
 			DOM.render(<AddPost/>, document.querySelector('.container'))
 			window.location.hash = "addpost"
 		},
