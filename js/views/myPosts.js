@@ -6,6 +6,11 @@ import AddPost from './addPost'
 
 var MyPosts = React.createClass ({
 
+	componentDidMount: function() {
+		var self = this
+		this.props.myPostsColl.on('sync', function() {self.forceUpdate()})
+	},
+
 	getInitialState: function() {
 		return {
 			myPostsColl: this.props.myPostsColl
@@ -16,6 +21,7 @@ var MyPosts = React.createClass ({
 		console.log('working')
 		return <SinglePost postsData={model} key={i} />
 	},
+
 
 	render: function() {
 		return (
