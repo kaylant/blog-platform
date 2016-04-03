@@ -98,7 +98,7 @@ function app() {
 				} else {
 					console.log("Authenticated successfully")
 					console.log(authData)
-					location.hash = "dash"
+					window.location.hash = "dash"
 				}
 			}
 			ref.authWithPassword({
@@ -144,7 +144,8 @@ function app() {
 
 		toAddPost: function(){
 			// pass collection down to add post
-			DOM.render(<AddPost/>, document.querySelector('.container'))
+			var mc = new MyPostsCollection(this.ref.getAuth().uid)
+			DOM.render(<AddPost email={this.ref.getAuth().password.email} myPostsColl={mc}/>, document.querySelector('.container'))
 			window.location.hash = "addpost"
 		},
 

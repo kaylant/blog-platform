@@ -7,19 +7,20 @@ import MyPosts from './myPosts'
 var AddPost = React.createClass ({
 
 	_grabPost: function(evt) {
-		console.log(this.props.postData)
 		evt.preventDefault()
 		var titleInput = evt.target.title.value
 		var contentInput = evt.target.content.value
-		this.props.postData.set({'title' : titleInput, 'content' : contentInput})
-		this.props.myPostsColl.add(this.props.postData)
-		this.props.update()
-	},
+		// console.log(titleInput)
+		// console.log(contentInput)
 
-	// store new data (model) on props
-	// add new model to collection
-	// make new post
-	// run update
+		// console.log(this.props.myPostsColl)
+		this.props.myPostsColl.add({
+			'title': titleInput,
+			'content': contentInput
+		})
+
+		window.location.hash = "myposts"
+	},
 
 	render: function() {
 		return (

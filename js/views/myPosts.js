@@ -7,21 +7,14 @@ import AddPost from './addPost'
 var MyPosts = React.createClass ({
 
 	getInitialState: function() {
-		console.log(this)
 		return {
 			myPostsColl: this.props.myPostsColl
-		}
-	},
-
-	_update: function() {
-		console.log(this)
-		this.setState({
-			myPostsColl: this.state.myPostsColl
-		})
+		} 
 	},
 
 	_makePostComponent: function(model, i) {
-		return <AddPost myPostsColl={this.props.myPostsColl} postData={model} key={i} update={this._update}/>
+		console.log('working')
+		return <SinglePost postsData={model} key={i} />
 	},
 
 	render: function() {
@@ -33,6 +26,17 @@ var MyPosts = React.createClass ({
 			)
 	}
 
+})
+
+var SinglePost = React.createClass ({
+	render: function() {
+		return (
+			<div className="post">
+				<p>{this.props.postsData.get('title')}</p>
+				<p>{this.props.postsData.get('content')}</p>
+			</div>
+			)
+	}
 })
 
 export default MyPosts
