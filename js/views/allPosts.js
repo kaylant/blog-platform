@@ -1,13 +1,10 @@
 import React, {Component} from 'react'
 import Header from './header'
 
-// --------------- Dash View --------------- //
-
-var DashView = React.createClass ({
+var AllPosts = React.createClass ({
 	render: function() {
 		return (
-			<div className="dash">
-				<p>Welcome, {this.props.email}</p>
+			<div className="myPostsList">
 				<Header/>
 				<div className="dashOptions">
 					<a href="#addpost">Add Post</a>
@@ -15,9 +12,10 @@ var DashView = React.createClass ({
 					<a href="#allposts">View All Posts</a>
 					<a href="#splash">Sign Out</a>
 				</div>
-			</div> 
+				<p>Posts from everyone!!</p>
+			</div>
 			)
 	}
 })
 
-export default DashView
+export default AllPosts

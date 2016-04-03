@@ -21,6 +21,12 @@ var MyPosts = React.createClass ({
 		return (
 			<div className="myPostsList">
 				<Header/>
+				<div className="dashOptions">
+					<a href="#addpost">Add Post</a>
+					<a href="#myposts">View My Posts</a>
+					<a href="#allposts">View All Posts</a>
+					<a href="#splash">Sign Out</a>
+				</div>
 				{this.props.myPostsColl.map(this._makePostComponent)}
 			</div>
 			)

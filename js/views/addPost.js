@@ -25,6 +25,7 @@ var AddPost = React.createClass ({
 	render: function() {
 		return (
 			<div className="addpost">
+				<Header/>
 				<p>Create post</p>
 				<form onSubmit={this._grabPost}>
 					<textarea id="title" placeholder="My title"/>

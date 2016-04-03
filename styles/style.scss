@@ -1,23 +1,6 @@
 @import "../bower_components/normalize-scss/_normalize.scss";
 @import "../bower_components/typeplate-starter-kit/scss/_typeplate.scss";
 
-p+p {
-    text-indent: 0;
-    margin-top: 0;
-}
-
-p {
-    max-width: 80ch;
-    margin-left: 0;
-    margin-right: auto;
-}
-
-ul, ol {
-    max-width: 80ch;
-    margin-left: 0;
-    margin-right: auto;
-}
-
 /**
  * BOX-SIZING
  */
@@ -154,11 +137,11 @@ body {
 // --------------- Dash View --------------- //
 
 .dash {
-    margin: 0 auto;
+    margin: auto;
     text-align: center;
 
     .dashOptions {
-        margin: 0 auto;
+        margin: auto;
 
         a {
             margin: 20px;
@@ -170,7 +153,7 @@ body {
 // --------------- Add Post --------------- //
 
 .addpost {
-    margin: 0 auto;
+    margin: auto;
     text-align: center;
 
     #title {
@@ -186,5 +169,21 @@ body {
         display: block;
         width: 500px;
         height: 700px;
+    }
+}
+
+// --------------- My Posts --------------- //
+
+.myPostsList {
+    margin: auto;
+    text-align: center;
+
+    .dashOptions {
+        margin: auto;
+
+        a {
+            margin: 20px;
+            display: inline-block;
+        }
     }
 }

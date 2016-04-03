@@ -42,6 +42,7 @@ import SplashView from './views/splashView'
 import DashView from './views/dashView'
 import AddPost from './views/addPost'
 import MyPosts from './views/myPosts'
+import AllPosts from './views/allPosts'
 
 function app() {
 
@@ -150,7 +151,7 @@ function app() {
 		},
 
 		toAllPosts: function(){ // posts by all users
-			DOM.render(<p>View All Posts</p>, document.querySelector('.container'))
+			DOM.render(<AllPosts />, document.querySelector('.container'))
 			window.location.hash = "allposts"
 		}
 	})
