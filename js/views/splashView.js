@@ -32,8 +32,8 @@ var SplashView = React.createClass ({
 				<Header/>
 				<div className="signInContainer">
 					<p className="error">{errorMsg}</p>
-					<input onChange={this._grabUserEmail}/>
-					<input type="password" onChange={this._grabUserPassword}/>
+					<input className="inputEmail" type="text" onChange={this._grabUserEmail}/>
+					<input className="inputPass" type="password" onChange={this._grabUserPassword}/>
 					<button onClick={this._handleSignIn}>Sign In</button>
 					<button onClick={this._handleSignUp}>Sign Up</button>
 				</div>

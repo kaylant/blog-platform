@@ -27,6 +27,7 @@ var AddPost = React.createClass ({
 			<div className="addpost">
 				<Header/>
 				<p>Create post</p>
+				<a href="#dash">Back to Dash</a>
 				<form onSubmit={this._grabPost}>
 					<textarea id="title" placeholder="My title"/>
 					<textarea id="content" placeholder="Type something here..."/>

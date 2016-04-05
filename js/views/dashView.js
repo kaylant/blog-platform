@@ -7,8 +7,8 @@ var DashView = React.createClass ({
 	render: function() {
 		return (
 			<div className="dash">
-				<p>Welcome, {this.props.email}</p>
 				<Header/>
+				<p>Welcome, {this.props.email}</p>
 				<div className="dashOptions">
 					<a href="#addpost">Add Post</a>
 					<a href="#myposts">View My Posts</a>

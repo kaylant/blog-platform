@@ -75,9 +75,6 @@
 img {
     max-width: 100%;
 }
-body {
-    font-family: 'San Francisco', 'Helvetica', 'Trebuchet MS', Arial, sans-serif;
-}
 
 /**
  * PACE (automatic pre-loader thingy)
@@ -111,6 +108,20 @@ body {
  * App code
  */
 
+$font-main: "minion-pro", serif;
+$primary-color: #95a5a6;
+
+// --------------- Header View --------------- //
+.header {
+    h1 {
+        font-family: $font-main;
+        color: $primary-color;
+        font-size: 50px;
+        font-style: normal;
+        margin-top: 30px;
+    }
+}
+
 // --------------- Splash View --------------- //
 
 .splash {
@@ -119,17 +130,56 @@ body {
 
     .signInContainer {
         margin: 0 auto;
-        border: 1px solid black;
         width: 300px;
 
-        input {
-            display: block;
-            margin: 10px auto;
+        input:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+            -webkit-text-fill-color: $primary-color !important;
         }
 
+        input.inputEmail {
+            margin: 25px;
+            outline: none;
+            border: none;
+            height: 35px;
+            width: 250px;
+            border-radius: 3px;
+            padding: 10px;
+            background-color: #fff !important;
+            color: $primary-color;
+        }
+
+        input.inputPass {
+            margin: 25px;
+            outline: none;
+            border: none;
+            height: 35px;
+            width: 250px;
+            border-radius: 3px;
+            padding: 10px;
+            background-color: #fff !important;
+            color: $primary-color;
+        }
+
+
+
         button {
-            display: inline-block;
+            outline: 0;
+            border: 2px solid $primary-color;
+            border-radius: 500px;
+            height: 45px;
+            width: 90px;
+            background: white;
             margin: 10px;
+            color: $primary-color;
+            font-size: 14px;
+            outline: 0;
+            -webkit-transform: scale(1,1);
+            -webkit-transition-timing-function: ease-out;
+            -webkit-transition-duration: 250ms;
+            -moz-transform: scale(1,1);
+            -moz-transition-timing-function: ease-out;
+            -moz-transition-duration: 250ms; 
         }
     }
 }

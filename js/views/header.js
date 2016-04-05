@@ -6,7 +6,7 @@ var Header = React.createClass ({
 	render: function() {
 		return (
 			<div className="header">
-				<p>This is blog</p>
+				<h1>blog</h1>
 			</div>
 		)
 	}
