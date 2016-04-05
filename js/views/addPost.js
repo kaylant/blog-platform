@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import Textarea from 'react-textarea-autosize'
 import Header from './header'
 import MyPosts from './myPosts'
 
@@ -23,6 +24,7 @@ var AddPost = React.createClass ({
 	},
 
 	render: function() {
+		var Textarea = require('react-textarea-autosize')
 		return (
 			<div className="addpost">
 				<Header/>
@@ -30,8 +32,8 @@ var AddPost = React.createClass ({
 				<a href="#dash">Back to Dash</a>
 				<form onSubmit={this._grabPost}>
 					<textarea id="title" placeholder="My title"/>
-					<textarea id="content" placeholder="Type something here..."/>
-					<input type="submit" value="Submit"/>
+					<Textarea id="content" placeholder="Type something here..."/>
+					<input id="submitButton" type="submit" value="Submit"/>
 				</form>
 			</div>
 			)
