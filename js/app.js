@@ -63,6 +63,15 @@ function app() {
 		}
 	})
 
+	var AllPostsCollection = Backbone.Firebase.Collection.extend ({
+		url: "https://blog-platform.firebaseio.com/users",
+		model: MyPostModel,
+
+		initialize: function(uid) {
+			this.url = `https://blog-platform.firebaseio.com/users${uid}/allposts`
+		}
+	})
+
 	// --------------- Router --------------- //
 	var BlogRouter = Backbone.Router.extend ({
 		routes: {
@@ -146,12 +155,15 @@ function app() {
 		toAddPost: function(){
 			// pass collection down to add post
 			var mc = new MyPostsCollection(this.ref.getAuth().uid)
-			DOM.render(<AddPost email={this.ref.getAuth().password.email} myPostsColl={mc}/>, document.querySelector('.container'))
+			var ac = new AllPostsCollection(this.ref.getAuth().uid)
+			DOM.render(<AddPost email={this.ref.getAuth().password.email} allPostsColl={ac} myPostsColl={mc}/>, document.querySelector('.container'))
 			window.location.hash = "addpost"
 		},
 
 		toAllPosts: function(){ // posts by all users
-			DOM.render(<AllPosts />, document.querySelector('.container'))
+			var mc = new MyPostsCollection(this.ref.getAuth().uid)
+			var ac = new AllPostsCollection(this.ref.getAuth().uid)
+			DOM.render(<AllPosts email={this.ref.getAuth().password.email} allPostsColl={ac} myPostsColl={mc}/>, document.querySelector('.container'))
 			window.location.hash = "allposts"
 		}
 	})

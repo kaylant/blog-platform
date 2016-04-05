@@ -159,16 +159,11 @@ body {
         }
 
         input.inputPass {
-            margin: 25px;
-            outline: none;
-            border: none;
-            height: 35px;
-            width: 300px;
-            padding: 10px;
+            @extend input.inputEmail;
             letter-spacing: 2px;
-            background-color: $tertiary-color !important;
-            color: $secondary-color;
-            border-bottom: 2px solid $secondary-color;
+            // background-color: $tertiary-color !important;
+            // color: $secondary-color;
+            // border-bottom: 2px solid $secondary-color;
         }
 
         button {

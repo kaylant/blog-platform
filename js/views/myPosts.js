@@ -7,6 +7,7 @@ import AddPost from './addPost'
 var MyPosts = React.createClass ({
 
 	componentDidMount: function() {
+		console.log("running")
 		var self = this
 		this.props.myPostsColl.on('sync', function() {self.forceUpdate()})
 	},

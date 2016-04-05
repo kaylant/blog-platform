@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Textarea from 'react-textarea-autosize'
 import Header from './header'
 import MyPosts from './myPosts'
+import AllPosts from './allPosts'
 
 // --------------- Add Post --------------- //
 
@@ -16,6 +17,12 @@ var AddPost = React.createClass ({
 
 		// console.log(this.props.myPostsColl)
 		this.props.myPostsColl.add({
+			'title': titleInput,
+			'content': contentInput
+		})
+
+		console.log(this.props.allPostsColl)
+		this.props.allPostsColl.add({
 			'title': titleInput,
 			'content': contentInput
 		})
