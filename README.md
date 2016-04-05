@@ -8,4 +8,6 @@ When writing a post, the text area dynamically resizes height based on content t
 
 Built with [React](https://facebook.github.io/react/) for views & [Backbone](http://backbonejs.org/) for routing, and [Firebase](https://www.firebase.com/) for data persistance.
 
-Enjoy! 🍕
+![](imgs/kaylan-blog-platform-textarea.png)
+
+-🍕
