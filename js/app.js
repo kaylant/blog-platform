@@ -59,7 +59,7 @@ function app() {
 		model: MyPostModel,
 
 		initialize: function(uid) {
-			this.url = `https://blog-platform.firebaseio.com/users${uid}/myposts`
+			this.url = `https://blog-platform.firebaseio.com/users/${uid}/myposts`
 		}
 	})
 
@@ -67,8 +67,8 @@ function app() {
 		url: "https://blog-platform.firebaseio.com/users",
 		model: MyPostModel,
 
-		initialize: function(uid) {
-			this.url = `https://blog-platform.firebaseio.com/users${uid}/allposts`
+		initialize: function() {
+			this.url = `https://blog-platform.firebaseio.com/allposts`
 		}
 	})
 
@@ -155,14 +155,14 @@ function app() {
 		toAddPost: function(){
 			// pass collection down to add post
 			var mc = new MyPostsCollection(this.ref.getAuth().uid)
-			var ac = new AllPostsCollection(this.ref.getAuth().uid)
+			var ac = new AllPostsCollection()
 			DOM.render(<AddPost email={this.ref.getAuth().password.email} allPostsColl={ac} myPostsColl={mc}/>, document.querySelector('.container'))
 			window.location.hash = "addpost"
 		},
 
 		toAllPosts: function(){ // posts by all users
 			var mc = new MyPostsCollection(this.ref.getAuth().uid)
-			var ac = new AllPostsCollection(this.ref.getAuth().uid)
+			var ac = new AllPostsCollection()
 			DOM.render(<AllPosts email={this.ref.getAuth().password.email} allPostsColl={ac} myPostsColl={mc}/>, document.querySelector('.container'))
 			window.location.hash = "allposts"
 		}

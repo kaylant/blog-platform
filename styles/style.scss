@@ -161,9 +161,6 @@ body {
         input.inputPass {
             @extend input.inputEmail;
             letter-spacing: 2px;
-            // background-color: $tertiary-color !important;
-            // color: $secondary-color;
-            // border-bottom: 2px solid $secondary-color;
         }
 
         button {

@@ -7,6 +7,12 @@ import MyPosts from './myPosts'
 
 var AllPosts = React.createClass ({
 
+	componentDidMount: function() {
+		console.log("running")
+		var self = this
+		this.props.allPostsColl.on('sync', function() {self.forceUpdate()})
+	},
+
 	_makePostComponent: function(model, i) {
 		console.log('working')
 		return <SinglePost postsData={model} key={i} />
@@ -23,7 +29,6 @@ var AllPosts = React.createClass ({
 					<a href="#splash">Sign Out</a>
 				</div>
 				<p>Posts from everyone!!</p>
-				{this.props.myPostsColl.map(this._makePostComponent)}
 				{this.props.allPostsColl.map(this._makePostComponent)}
 			</div>
 			)

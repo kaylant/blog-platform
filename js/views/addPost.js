@@ -20,12 +20,14 @@ var AddPost = React.createClass ({
 			'title': titleInput,
 			'content': contentInput
 		})
-
+		console.log('adding to allpostcoll')
 		console.log(this.props.allPostsColl)
 		this.props.allPostsColl.add({
 			'title': titleInput,
 			'content': contentInput
 		})
+		console.log('adding to allpostcoll')
+		console.log(this.props.allPostsColl)
 
 		window.location.hash = "myposts"
 	},

@@ -12,12 +12,6 @@ var MyPosts = React.createClass ({
 		this.props.myPostsColl.on('sync', function() {self.forceUpdate()})
 	},
 
-	getInitialState: function() {
-		return {
-			myPostsColl: this.props.myPostsColl
-		} 
-	},
-
 	_makePostComponent: function(model, i) {
 		console.log('working')
 		return <SinglePost postsData={model} key={i} />
